@@ -67,7 +67,7 @@ window.addEventListener('resize', () => {
 
 // Base camera
 const camera = new THREE.PerspectiveCamera(90, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(0, 0, 0.05);
+camera.position.set(0, 0, 2);
 scene.add(camera);
 
 const boxGeo = new THREE.BoxBufferGeometry(0.1, 0.1, 0.1);
@@ -104,7 +104,7 @@ const tick = () => {
 
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
-
+    boxMesh.position.z += elapsedTime % 2;
     // Update uniforms
     material.uniforms.uTime.value = elapsedTime;
 
