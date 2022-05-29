@@ -70,6 +70,16 @@ const camera = new THREE.PerspectiveCamera(90, sizes.width / sizes.height, 0.1, 
 camera.position.set(0, 0, 0.05);
 scene.add(camera);
 
+const boxGeo = new THREE.BoxBufferGeometry(0.1, 0.1, 0.1);
+const boxMat = new THREE.MeshBasicMaterial({
+    color: 0x00ff00,
+    wireframe: true
+});
+const boxMesh = new THREE.Mesh(boxGeo, boxMat);
+scene.add(boxMesh);
+
+boxMesh.position.z = -0.05;
+
 // Controls
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
