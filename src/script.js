@@ -52,6 +52,7 @@ const bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
         magFilter: THREE.LinearFilter,
     });
 
+
 window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth;
@@ -83,9 +84,12 @@ const boxMat = new THREE.MeshBasicMaterial({
     wireframe: true
 });
 const boxMesh = new THREE.Mesh(boxGeo, material);
+const boxMesh1 = new THREE.Mesh(boxGeo, material);
 scene.add(boxMesh);
+bufferScene.add(boxMesh1);
 
 boxMesh.position.z = -0.05;
+boxMesh1.position.z = -0.05;
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
