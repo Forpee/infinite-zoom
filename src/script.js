@@ -45,6 +45,13 @@ const sizes = {
     height: window.innerHeight
 };
 
+const bufferScene = new THREE.Scene();
+const bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
+    {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.LinearFilter,
+    });
+
 window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth;
