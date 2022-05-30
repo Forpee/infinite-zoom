@@ -52,7 +52,6 @@ const bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
         magFilter: THREE.LinearFilter,
     });
 
-
 window.addEventListener('resize', () => {
     // Update sizes
     sizes.width = window.innerWidth;
@@ -115,12 +114,16 @@ const tick = () => {
 
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
-    boxMesh.position.z = elapsedTime % 2;
     // Update uniforms
     material.uniforms.uTime.value = 2 * elapsedTime - 0.05;
 
     // Render
+    renderer.setRenderTarget(bufferTexture);
+    renderer.render(bufferScene, camera);
+    renderer.setRenderTarget(null);
     renderer.render(scene, camera);
+
+    boxMesh.position.z = elapsedTime % 2;
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick);
