@@ -47,12 +47,12 @@ const sizes = {
 };
 
 const bufferScene = new THREE.Scene();
-const bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
+let bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
     {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
     });
-const bufferTexture1 = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
+let bufferTexture1 = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
     {
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
@@ -125,13 +125,17 @@ const tick = () => {
 
     material.uniforms.uTexture.value = bufferTexture.texture;
     // Render
-    renderer.setRenderTarget(bufferTexture);
+    renderer.setRenderTarget(bufferTexture1);
     renderer.render(bufferScene, camera);
     renderer.setRenderTarget(null);
     renderer.clear();
     renderer.render(scene, camera);
 
     boxMesh.position.z = (2 * elapsedTime % 2) - 0.05;
+
+    let temp = bufferTexture;
+    bufferTexture = bufferTexture1;
+    bufferTexture1 = temp;
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick);
