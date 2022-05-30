@@ -113,7 +113,6 @@ const tick = () => {
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick);
-    // 
 };
 
 tick();
