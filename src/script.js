@@ -75,7 +75,7 @@ const boxMat = new THREE.MeshBasicMaterial({
     color: 0x00ff00,
     wireframe: true
 });
-const boxMesh = new THREE.Mesh(boxGeo, boxMat);
+const boxMesh = new THREE.Mesh(boxGeo, material);
 scene.add(boxMesh);
 
 boxMesh.position.z = -0.05;
