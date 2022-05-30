@@ -121,6 +121,7 @@ const tick = () => {
     renderer.setRenderTarget(bufferTexture);
     renderer.render(bufferScene, camera);
     renderer.setRenderTarget(null);
+    renderer.clear();
     renderer.render(scene, camera);
 
     boxMesh.position.z = elapsedTime % 2;
