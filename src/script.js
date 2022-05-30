@@ -52,6 +52,11 @@ const bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
         minFilter: THREE.LinearFilter,
         magFilter: THREE.LinearFilter,
     });
+const bufferTexture1 = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
+    {
+        minFilter: THREE.LinearFilter,
+        magFilter: THREE.LinearFilter,
+    });
 
 window.addEventListener('resize', () => {
     // Update sizes
