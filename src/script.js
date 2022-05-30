@@ -89,7 +89,7 @@ const boxMat = new THREE.MeshBasicMaterial({
     wireframe: true
 });
 const boxMesh = new THREE.Mesh(boxGeo, material);
-const boxMesh1 = new THREE.Mesh(boxGeo, material);
+const boxMesh1 = new THREE.Mesh(boxGeo, boxMat);
 scene.add(boxMesh);
 bufferScene.add(boxMesh1);
 
@@ -131,7 +131,7 @@ const tick = () => {
     renderer.clear();
     renderer.render(scene, camera);
 
-    boxMesh.position.z = (2 * elapsedTime % 2) - 0.05;
+    boxMesh.position.z = (elapsedTime % 2) - 0.05;
 
     let temp = bufferTexture;
     bufferTexture = bufferTexture1;
