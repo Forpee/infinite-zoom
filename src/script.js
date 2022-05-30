@@ -27,6 +27,7 @@ const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32);
 const material = new THREE.ShaderMaterial({
     uniforms: {
         uTime: { value: 0 },
+        uTexture: { value: null },
     },
     vertexShader: vertexShader,
     fragmentShader: fragmentShader,
@@ -115,8 +116,9 @@ const tick = () => {
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
     // Update uniforms
-    material.uniforms.uTime.value = 2 * elapsedTime - 0.05;
+    material.uniforms.uTime.value = elapsedTime;
 
+    material.uniforms.uTexture.value = bufferTexture.texture;
     // Render
     renderer.setRenderTarget(bufferTexture);
     renderer.render(bufferScene, camera);
@@ -124,7 +126,7 @@ const tick = () => {
     renderer.clear();
     renderer.render(scene, camera);
 
-    boxMesh.position.z = elapsedTime % 2;
+    boxMesh.position.z = (2 * elapsedTime % 2) - 0.05;
 
     // Call tick again on the next frame
     window.requestAnimationFrame(tick);
