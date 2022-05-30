@@ -104,7 +104,7 @@ const tick = () => {
 
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
-    boxMesh.position.z += elapsedTime % 2;
+    boxMesh.position.z = elapsedTime % 2;
     // Update uniforms
     material.uniforms.uTime.value = elapsedTime;
 
