@@ -24,7 +24,6 @@ const bufferScene = new THREE.Scene();
  * Test mesh
  */
 // Geometry
-const geometry = new THREE.PlaneBufferGeometry(1, 1, 32, 32);
 
 // Material
 const material = new THREE.ShaderMaterial({
@@ -64,10 +63,6 @@ const pointsMesh = new THREE.Points(pgeo, material1);
 const pointsMesh1 = new THREE.Points(pgeo, material1);
 scene.add(pointsMesh);
 bufferScene.add(pointsMesh1);
-
-// Mesh
-// const mesh = new THREE.Mesh(geometry, material);
-// scene.add(mesh);
 
 /**
  * Sizes
@@ -119,7 +114,7 @@ const boxMat = new THREE.MeshBasicMaterial({
     wireframe: true
 });
 const boxMesh = new THREE.Mesh(boxGeo, material);
-const boxMesh1 = new THREE.Mesh(boxGeo, boxMat);
+const boxMesh1 = new THREE.Mesh(boxGeo, material1);
 scene.add(boxMesh);
 bufferScene.add(boxMesh1);
 
@@ -164,7 +159,7 @@ const tick = () => {
     renderer.render(scene, camera);
 
     boxMesh.position.z = (playHead) - 0.1;
-    pointsMesh.position.z = (playHead) - 0.05;
+    pointsMesh.position.z = (playHead);
 
     let temp = bufferTexture;
     bufferTexture = bufferTexture1;
