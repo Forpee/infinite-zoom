@@ -4,6 +4,8 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import * as dat from 'dat.gui';
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
+import pointsVertexShader from './shaders/points/vertex.glsl';
+import pointsFragmentShader from './shaders/points/fragment.glsl';
 import gsap from 'gsap';
 /**
  * Base
@@ -33,9 +35,35 @@ const material = new THREE.ShaderMaterial({
     fragmentShader: fragmentShader,
     side: THREE.DoubleSide
 });
+const material1 = new THREE.ShaderMaterial({
+    uniforms: {
+        uTime: { value: 0 },
+        uTexture: { value: null },
+    },
+    vertexShader: pointsVertexShader,
+    fragmentShader: pointsFragmentShader,
+    side: THREE.DoubleSide
+});
+
+let num = 100;
+let pgeo = new THREE.BufferGeometry();
+
+let positions = new Float32Array(num * 3);
+let size = new Float32Array(num);
+
+for (let i = 0; i < num; i++) {
+    positions.set([Math.random(), Math.random(), Math.random()], i * 3);
+    size.set([Math.random()], i);
+
+}
+
+pgeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+pgeo.setAttribute('size', new THREE.BufferAttribute(size, 1));
+const pointsMesh = new THREE.Points(pgeo, material1);
+scene.add(pointsMesh);
 
 // Mesh
-const mesh = new THREE.Mesh(geometry, material);
+// const mesh = new THREE.Mesh(geometry, material);
 // scene.add(mesh);
 
 /**
