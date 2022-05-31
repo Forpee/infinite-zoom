@@ -45,6 +45,8 @@ const material1 = new THREE.ShaderMaterial({
     side: THREE.DoubleSide
 });
 
+let material2 = material.clone();
+
 let num = 100;
 let pgeo = new THREE.BufferGeometry();
 
@@ -108,13 +110,13 @@ const camera = new THREE.PerspectiveCamera(90, sizes.width / sizes.height, 0.1, 
 camera.position.set(0, 0, 2);
 scene.add(camera);
 
-const boxGeo = new THREE.BoxBufferGeometry(0.1, 0.1, 0.1);
+const boxGeo = new THREE.PlaneBufferGeometry(2, 2);
 const boxMat = new THREE.MeshBasicMaterial({
     color: 0x00ff00,
     wireframe: true
 });
 const boxMesh = new THREE.Mesh(boxGeo, material);
-const boxMesh1 = new THREE.Mesh(boxGeo, material1);
+const boxMesh1 = new THREE.Mesh(boxGeo, material2);
 scene.add(boxMesh);
 bufferScene.add(boxMesh1);
 
@@ -153,6 +155,7 @@ const tick = () => {
     material.uniforms.uTime.value = elapsedTime;
 
     material.uniforms.uTexture.value = bufferTexture.texture;
+    material2.uniforms.uTexture.value = bufferTexture.texture;
     // Render
     renderer.setRenderTarget(bufferTexture1);
     renderer.render(bufferScene, camera);
