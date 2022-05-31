@@ -146,6 +146,7 @@ const tick = () => {
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
     let playHead = (elapsedTime) % 1;
+    let zoom = Math.exp(Math.log(0.1) * playHead);
     // console.log(playHead);
     // playHead = playHead < 0.5 ? 0 : 1;
     // Update uniforms
@@ -159,8 +160,8 @@ const tick = () => {
     renderer.clear();
     renderer.render(scene, camera);
 
-    boxMesh.position.z = (playHead) - 0.1;
-    pointsMesh.position.z = (playHead);
+    boxMesh.position.z = (1 - zoom);
+    pointsMesh.position.z = (1 - zoom);
 
     let temp = bufferTexture;
     bufferTexture = bufferTexture1;
