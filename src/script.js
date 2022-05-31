@@ -118,8 +118,8 @@ const boxMesh1 = new THREE.Mesh(boxGeo, material1);
 scene.add(boxMesh);
 bufferScene.add(boxMesh1);
 
-boxMesh.position.z = -0.05;
-// boxMesh1.position.z = -0.05;
+boxMesh.position.z = 0.05;
+boxMesh1.position.z = -0.05;
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
