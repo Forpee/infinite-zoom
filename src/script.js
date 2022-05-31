@@ -107,7 +107,7 @@ window.addEventListener('resize', () => {
 
 // Base camera
 const camera = new THREE.PerspectiveCamera(90, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(0, 0, 2);
+camera.position.set(0, 0, 1.25);
 scene.add(camera);
 
 const boxGeo = new THREE.PlaneBufferGeometry(2, 2);
