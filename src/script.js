@@ -119,7 +119,7 @@ scene.add(boxMesh);
 bufferScene.add(boxMesh1);
 
 boxMesh.position.z = -0.05;
-boxMesh1.position.z = -0.05;
+// boxMesh1.position.z = -0.05;
 
 // Controls
 const controls = new OrbitControls(camera, canvas);
@@ -158,8 +158,8 @@ const tick = () => {
     renderer.clear();
     renderer.render(scene, camera);
 
-    boxMesh.position.z = (playHead) - 0.1;
-    pointsMesh.position.z = (playHead);
+    boxMesh.position.z = (2 * playHead) - 0.1;
+    pointsMesh.position.z = (2 * playHead);
 
     let temp = bufferTexture;
     bufferTexture = bufferTexture1;
