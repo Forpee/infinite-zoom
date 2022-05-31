@@ -151,6 +151,7 @@ const tick = () => {
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
     let playHead = elapsedTime % 2;
+    playHead = playHead < 0.5 ? 0 : 1;
     // Update uniforms
     material.uniforms.uTime.value = elapsedTime;
 
@@ -162,7 +163,7 @@ const tick = () => {
     renderer.clear();
     renderer.render(scene, camera);
 
-    boxMesh.position.z = (playHead) - 0.05;
+    boxMesh.position.z = (playHead) - 0.1;
     pointsMesh.position.z = (playHead) - 0.05;
 
     let temp = bufferTexture;
