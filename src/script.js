@@ -160,6 +160,7 @@ const tick = () => {
     renderer.render(scene, camera);
 
     boxMesh.position.z = (elapsedTime % 2) - 0.05;
+    pointsMesh.position.z = (elapsedTime % 2) - 0.05;
 
     let temp = bufferTexture;
     bufferTexture = bufferTexture1;
