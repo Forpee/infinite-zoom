@@ -18,6 +18,7 @@ const canvas = document.querySelector('canvas.webgl');
 
 // Scene
 const scene = new THREE.Scene();
+const bufferScene = new THREE.Scene();
 
 /**
  * Test mesh
@@ -60,7 +61,9 @@ for (let i = 0; i < num; i++) {
 pgeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
 pgeo.setAttribute('size', new THREE.BufferAttribute(size, 1));
 const pointsMesh = new THREE.Points(pgeo, material1);
+const pointsMesh1 = new THREE.Points(pgeo, material1);
 scene.add(pointsMesh);
+bufferScene.add(pointsMesh1);
 
 // Mesh
 // const mesh = new THREE.Mesh(geometry, material);
@@ -74,7 +77,6 @@ const sizes = {
     height: window.innerHeight
 };
 
-const bufferScene = new THREE.Scene();
 let bufferTexture = new THREE.WebGLRenderTarget(sizes.width, sizes.height,
     {
         minFilter: THREE.LinearFilter,
@@ -148,6 +150,7 @@ const tick = () => {
 
     // Get elapsedtime
     const elapsedTime = clock.getElapsedTime();
+    let playHead = elapsedTime % 2;
     // Update uniforms
     material.uniforms.uTime.value = elapsedTime;
 
@@ -159,8 +162,8 @@ const tick = () => {
     renderer.clear();
     renderer.render(scene, camera);
 
-    boxMesh.position.z = (elapsedTime % 2) - 0.05;
-    pointsMesh.position.z = (elapsedTime % 2) - 0.05;
+    boxMesh.position.z = (playHead) - 0.05;
+    pointsMesh.position.z = (playHead) - 0.05;
 
     let temp = bufferTexture;
     bufferTexture = bufferTexture1;
