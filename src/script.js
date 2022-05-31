@@ -52,7 +52,7 @@ let positions = new Float32Array(num * 3);
 let size = new Float32Array(num);
 
 for (let i = 0; i < num; i++) {
-    positions.set([Math.random(), Math.random(), Math.random()], i * 3);
+    positions.set([3 * (Math.random() - 0.5), 3 * (Math.random() - 0.5), 0], i * 3);
     size.set([Math.random()], i);
 
 }
